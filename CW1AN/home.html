@@ -1,0 +1,159 @@
+<!--Plagiarism Declaration Confirmation-->
+<!--I confirm that this coursework submission is entirely my own work, 
+except where explicitly stated otherwise.-->
+<!--Ameer Naraynen 2017-->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- meta references taken and used from adding official bootstrap (http://getbootstrap.com/) and jquery files into project -->
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+
+	    <!-- jQuery Version 1.11.1 -->
+		<script src="js/jquery.js"></script>
+		<!-- Bootstrap Core JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Bootstrap Core CSS -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <!-- Custom CSS -->
+		<link rel="stylesheet" type="text/css" href="css/filmRemakes.css">
+		<!-- This JavaScript file contains functions used by the HTML page and form to carry on the searches and functionality -->
+		<script src="js/filmRemakes.js"></script>
+	    
+		<title>Film Remakes - IWT2017 CW1 - AN</title>
+	</head>
+
+	<body>
+		<!-- Page Content -->
+	    <div class="container">
+	
+	        <div class="row">
+	            <div class="col-lg-12 text-center">
+	                <h1>Welcome to Film Remakes!</h1>
+	                <p class="lead">Please follow the instructions below to be displayed with your desired results:</p>
+	                <p class="text-left">1. Use the drop down filters below and then a necessary operator to create a desired search criteria. <i>Details of the Operators can be found in the table below.</i></p>         
+	                <p class="text-left">2. Once you have setup your criteria, please select the 'Get Results' button to start the search.</p>
+	                <p class="text-left">3. Your search results will appear below once complete. </p>
+	                <p class="text-left">*<i>Please note you may be prompted with confirmations on your selected search criteria. On any of these occurrences, please confirm your selection and then select 'Ok' to proceed.</i></p>
+	                
+	                <!-- use BootStrap CSS throughout for layout and styling of HTML page and HTML tables -->
+	                <div class="text-left">
+		                <table class="table table-striped table-bordered table-condensed">
+						    <thead>
+						      <tr>
+						        <th>Operator</th>
+						        <th>Detail</th>
+						      </tr>
+						    </thead>
+						    <tbody>
+						      <tr>
+						        <td>=</td>
+						        <td>Equal to</td>
+						      </tr>
+						      <tr>
+						        <td>></td>
+						        <td>Greater than</td>
+						      </tr>
+						      <tr>
+						        <td><</td>
+						        <td>Less than</td>
+						      </tr>
+						      <tr>
+						        <td>>=</td>
+						        <td>Greater than or Equal to</td>
+						      </tr>
+						      <tr>
+						        <td><=</td>
+						        <td>Less than< or Equal to</td>
+						      </tr>
+						    </tbody>
+						  </table>
+	                </div>  
+	                
+	                <p class="text-left">Happy Remake Searching!</p>
+	                <br/>
+	                <!-- Details of Film Remakes with dropdowns to carry out the search query -->
+	                <form>
+		                <fieldset>
+		         
+							<div class="text-left">
+							<p>
+							    <!-- Title/Name of remake -->
+							    <label><b>Remake Name:</b></label>
+							      <select id="objTitle" name="objTitle">
+							        <option value="equals" selected="selected">Equals</option>
+							        <option value="contains">Contains</option>
+							        <option value="original">Original</option>
+							      </select> 
+							    <input type="text" name="rtitle" id="rtitle"  />
+							    <span>Please select a filter option and enter word(s)</span>
+							</p>
+							<p>
+							    <!-- Year of remake and operators to use for filtering results -->
+							    <label><b>Year Of Remake:</b></label>
+							      <select id="objYear" name="objYear">
+							        <option value="=" selected="selected">=</option>
+							        <option value=">">&gt;</option>
+							        <option value="<">&lt;</option>
+							        <option value="=>">=&gt;</option>
+							        <option value="=<">=&lt;</option>    
+							      </select> 
+							      <!--ToDo: implement some JavaScript to validate input so only numeric values entered with a ax length of 4-->
+							    <input type="text" name="ryear" id="ryear" maxlength="4" pattern="[0-9]" /> 
+							    <span class="help">Please select an operator and enter a year (4 digits)</span>
+						    </p>
+						    <p>
+							    <!-- Fraction details with operators for use when filtering results -->
+							    <label><b>Fraction:</b></label>
+							      <select id="objFrac" name="objFrac">
+							        <option value="=" selected="selected">=</option>
+							        <option value=">">&gt;</option>
+							        <option value="<">&lt;</option>
+							        <option value="=>">=&gt;</option>
+							        <option value="=<">=&lt;</option>    
+							      </select> 
+							      <!--ToDo: implement some JavaScript to validate input so only handles a relevant the decimal value-->
+							    <input type="text" name="frac" id="frac" maxlength="3"/> 
+							    <span>Please select an operator and enter a decimal value between 0 and 1</span>
+						    </p>
+						    <p>
+							    <!-- Using the below selection, the user can sort the results by the selection made -->
+							    <label><b>Sort By:</b></label>
+							      <select id ="objSortBy" name="objSortBy">
+							        <option value="rtitle" selected>Title</option>
+							        <option value="ryear">Year</option>
+							        <option value="stitle">Original Title</option>
+							        <option value="syear">Original Year</option>
+							        <option value="fraction">Fraction</option>
+							      </select>
+							    </label> 
+							    <span>Please select the how you wish the results to be sorted by. <i>(The default will be by Title)</i></span>
+						    </p>
+						    </div>
+						    <br/>
+						    
+						    <!-- Using the button below, this will trigger the search to begin while also taking into account any search filter options the user may have chosen to be part of the query.  -->
+						    <p class="text-center">
+							    <input type="button" id="btnGetResults" value="Get Results"
+							    onClick="funcGetResults(objTitle.value, rtitle.value, objYear.value, ryear.value, objFrac.value, frac.value, objSortBy.value)" /> 
+							    <span>The form will now gather and display all film remakes as no filter was applied.</span>
+						    </p>
+						    
+						</fieldset>
+						
+						<!-- HTML table to be created from the xsl stylesheet and using DOM injection, displayed below once a search is made.-->
+						<div id="tblResults">
+			    		</div>
+		
+					</form>
+	            </div>
+	        </div> <!-- /.row -->
+	
+	    </div> <!-- /.container -->
+		
+	</body>
+</html>
