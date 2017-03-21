@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+h1, h2, h3, h4, h5, h6 
+{
+		background: yellow;
+		color: purple;
+		text-align: center;
+}
+
+body 
+{
+		background-color: lightgray;
+}
+
+div
+{
+		color: blue;
+}
+
+span.tab
+{
+	 padding: 0px 0px 0px 50px; /* top right bottom left */	
+	 float:right;	
+}
+
+span.help    
+{ 
+		color: red; 
+		float:right; 
+}
